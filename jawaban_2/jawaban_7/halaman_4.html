@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman 3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="card mb-3">
+            <div class="card-body">
+                <a href="http://localhost:3000" class="btn-small btn-primary col-md-4 mb-2">Home</a>
+                <a href="http://localhost:3000/halaman_3.html" class="btn-small btn-primary col-md-4 mb-2">Jawaban 3</a>
+                <a href="http://localhost:3000/halaman_4.html" class="btn-small btn-primary col-md-4 mb-2">Jawaban 4</a>
+                <a href="http://localhost:3000/halaman_5.html" class="btn-small btn-primary col-md-4 mb-2">Jawaban 5</a>
+            </div>
+        </div>
+        <table class="table table-bordered" id="table-nilai">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Region</th>
+                    <th>Country</td>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Month</th>
+                    <th>Day</th>
+                    <th>Year</th>
+                    <th>AvgTemperature</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="warna">
+    
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function getData() {
+
+
+                fetch('http://localhost:3000/api/jawaban/4').then(resp => resp.json()).then(resp => {
+                    const table = document.querySelector('#table-nilai').getElementsByTagName('tbody')[0];
+
+                    //const data = JSON.parse(resp);
+                    table.innerHTML = '';
+
+                    resp.forEach(r => {
+                        const row = table.insertRow();
+
+                        const cellRegion = row.insertCell();
+                        const cellCountry = row.insertCell();
+                        const cellState = row.insertCell();
+                        const cellCity = row.insertCell();
+                        const cellMonth = row.insertCell();
+                        const cellDay = row.insertCell();
+                        const cellYear = row.insertCell();
+                        const cellAvgTemperature = row.insertCell();
+                        
+
+                        cellRegion.innerHTML = r.nama_mhs;
+                        cellCountry.innerHTML = r.matkul;
+                        cellState.innerHTML = r.nilai;
+                        cellCity.innerHTML = r.index;
+                        cellMonth.innerHTML = r.status;
+                        cellDay.innerHTML = r.status;
+                        cellYear.innerHTML = r.status;
+                        cellAvgTemperature.innerHTML = r.status;
+                       
+                    });
+
+                });
+            }
+
+    </script>
+    
+</body>
+</html>
