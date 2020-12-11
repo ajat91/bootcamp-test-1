@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front End Dev</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card mb-3">
+            <div class="card-body">
+                <a href="http://localhost:3000" class="btn-small btn-primary col-md-4 mb-2">Home</a>
+                <a href="http://localhost:3000/halaman_3.html" class="btn-small btn-primary col-md-4 mb-2">Jawaban 3</a>
+                <a href="http://localhost:3000/halaman_4.html" class="btn-small btn-primary col-md-4 mb-2">Jawaban 4</a>
+                <a href="http://localhost:3000/halaman_5.html" class="btn-small btn-primary col-md-4 mb-2">Jawaban 5</a>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h4 class="card-title">Temperature Kota</h4>
+                <br>
+                <form onsubmit="return submitData(event)">
+                    <div class="row">
+                        <div class="col-3">Region</div>
+                        <div class="col-8">
+                            <input class="form-control col-md-4 mb-2" id="Region" type="text" name="Region"/>
+                        </div>
+
+                        <div class="col-3">Country</div>
+                        <div class="col-8">
+                            <input class="form-control col-md-4 mb-2" id="Country" type="text" name="Country" />
+                        </div>
+
+                        <div class="col-3">State</div>
+                        <div class="col-8">
+                            <input class="form-control col-md-4 mb-2" id="State" type="text" name="State" />
+                        </div>
+                        <div class="col-3">City</div>
+                        <div class="col-8">
+                            <input class="form-control col-md-4 mb-2" id="City" type="text" name="City" />
+                        </div>
+
+                        <div class="col-3">Month</div>
+                        <div class="col-8">
+                            <input class="form-control col-md-4 mb-2" id="Month" type="text" name="Month" />
+                        </div>
+                        <div class="col-3">Day</div>
+                        <div class="col-8">
+                            <input class="form-control col-md-4 mb-2" id="Day" type="text" name="Day" />
+                        </div>
+                        <div class="col-3">Year</div>
+                        <div class="col-8">
+                            <input class="form-control col-md-4 mb-2" id="Year" type="text" name="Year" />
+                        </div>
+                        <div class="col-3">AvgTemperature</div>
+                        <div class="col-8">
+                            <input class="form-control col-md-4 mb-2" id="AvgTemperature" type="text" name="AvgTemperature" />
+                        </div>
+
+
+                        <div class="col-3"></div>
+                        <div class="col-8">
+                            <button class="btn-small btn-primary col-md-4 mb-2" type="submit" name="submit">Simpan Data</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+    </div>
+    <script>
+        
+        function submitData(e) {
+            e.preventDefault();
+            alert('Data Berhasil disimpan')
+            const Region = document.querySelector('#Region')
+            const Country = document.querySelector('#Country')
+            const State = document.querySelector('#State')
+            const City = document.querySelector('#City')
+            const Month = document.querySelector('#Month')
+            const Day = document.querySelector('#Day')
+            const Year = document.querySelector('#Year')
+            const AvgTemperature = document.querySelector('#AvgTemperature')
+          
+
+            fetch('/simpan-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    Region: Region.value,
+                    Country: Country.value,
+                    State: State.value,
+                    City: City.value,
+                    Month: Month.value,
+                    Day: Day.value,
+                    Year: Year.value,
+                    AvgTemperature: AvgTemperature.value
+                  
+                })
+            }).then(resp => resp.json()).then(resp => {
+                console.log("masuk")
+                alert('Nilai Berhasil disimpan')
+                
+
+            })
+            return false
+        }
+    </script>
+</body>
+
+</html>
